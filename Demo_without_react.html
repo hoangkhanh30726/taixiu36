@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tài xỉu 36 — Single file</title>
+
+  <style>
+    /* App.css (kept as provided) */
+    #root {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .logo {
+      height: 6em;
+      padding: 1.5em;
+      will-change: filter;
+      transition: filter 300ms;
+    }
+    .logo:hover {
+      filter: drop-shadow(0 0 2em #646cffaa);
+    }
+    .logo.react:hover {
+      filter: drop-shadow(0 0 2em #61dafbaa);
+    }
+
+    @keyframes logo-spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      a:nth-of-type(2) .logo {
+        animation: logo-spin infinite 20s linear;
+      }
+    }
+
+    .card { padding: 2em; }
+    .read-the-docs { color: #888; }
+
+    /* Minimal additional styles so the original classes from App.jsx / return_money.jsx render nicely */
+    body {
+      font-family: system-ui, "Noto Sans", Arial, sans-serif;
+      margin: 12px;
+      background: #f5f7fb;
+      color: #111;
+    }
+
+    .app {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .box_start { display:flex; justify-content:center; margin-top:10px; margin-bottom:0px; }
+    .title {
+      font-size:55px;
+      padding:10px;
+      width:640px;
+      border-radius:10px;
+      background-color:white;
+      color: rgba(0,0,0,0.85);
+      border: none;
+    }
+
+    .boxs1 { display:flex; justify-content:center; margin:10px; }
+    .box {
+      margin:10px;
+      font-size:70px;
+      padding:20px;
+      width:200px;
+      height:200px;
+      border-radius:10px;
+      border: solid 2px black;
+      background-color: white;
+      color: #252525;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .boxs2 { display:flex; justify-content:center; }
+    .text_out {
+      width:630px;
+      font-size:55px;
+      padding:10px;
+      border-radius:10px;
+      background-color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .boxs3 { display:flex; justify-content:center; margin:20px 10px; align-items:center; gap:12px; }
+    .clk_evt {
+      font-size:55px;
+      width:260px;
+      padding:10px;
+      border-radius:15px;
+      background-color:white;
+      transition:all 200ms linear;
+      cursor:pointer;
+      border:2px solid black;
+    }
+    .clk_evt:hover { background-color: #f6f6f6; }
+
+    .stk {
+      font-size:55px;
+      padding:10px;
+      border-radius:15px;
+      background-color:white;
+      border:2px solid black;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-width:160px;
+    }
+
+    .add_mny {
+      font-size:50px;
+      border-radius:15px;
+      cursor:pointer;
+      background-color:white;
+      padding-left:30px;
+      padding-right:30px;
+      transition:all 200ms linear;
+      border:2px solid black;
+    }
+    .add_mny:hover { background-color:#f6f6f6; }
+
+    /* return_money styles (as in previous CSS) */
+    .box1_rm { display:flex; justify-content:center; margin-top:12px; }
+    .de_bai {
+      font-size:35px;
+      background-color:white;
+      border:2px solid black;
+      padding:20px;
+      border-radius:10px;
+      width:90%;
+      box-sizing:border-box;
+      text-align:left;
+    }
+    .box2_rm { display:flex; justify-content:center; font-size:35px; margin-top:10px; }
+    input[type="text"] {
+      font-size:30px;
+      padding:6px;
+      border-radius:10px;
+      border:2px solid black;
+      width:90%;
+      box-sizing:border-box;
+    }
+    .box3_rm { display:flex; justify-content:center; font-size:35px; margin-top:10px; gap:8px; }
+    .submit, .return {
+      font-size:33px;
+      padding:10px 18px;
+      border:2px solid black;
+      border-radius:10px;
+      background-color:white;
+      cursor:pointer;
+    }
+    .submit:hover, .return:hover { background-color:#f6f6f6; }
+
+    .controls { display:flex; justify-content:center; gap:12px; margin-top:8px; }
+    .hint { text-align:center; margin-top:10px; color:#333; }
+    footer { text-align:center; margin-top:18px; color:#555; font-size:13px; }
+
+    @media (max-width:960px) {
+      .title { width:90%; font-size:42px; }
+      .text_out { width:90%; font-size:40px; }
+      .box { width:140px; height:140px; font-size:48px; padding:10px; }
+      .clk_evt { width:200px; font-size:40px; }
+      .stk { font-size:36px; }
+      .add_mny { font-size:36px; padding-left:18px; padding-right:18px; }
+    }
+    @media (max-width:520px) {
+      .title { font-size:30px; width:90%; }
+      .box { width:100px; height:100px; font-size:36px; }
+      .clk_evt { width:160px; font-size:32px; }
+      .text_out { font-size:32px; width:90%; }
+      .stk { font-size:28px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app" id="root">
+    <!-- Game view (based on App.jsx markup) -->
+    <div id="gameView">
+      <div class="box_start">
+        <button class="title"><b>Tài xỉu 36</b></button>
+      </div>
+
+      <div class="boxs1">
+        <div class="box" id="b1">0</div>
+        <div class="box" id="b2">0</div>
+        <div class="box" id="b3">0</div>
+      </div>
+
+      <div class="boxs2">
+        <div class="text_out" id="outputText">Kết quả của bạn</div>
+      </div>
+
+      <div class="boxs3">
+        <button class="clk_evt" id="spinBtn">Quay</button>
+        <div class="stk" id="stkDisplay">0 triệu</div>
+        <button class="add_mny" id="addBtn">+</button>
+      </div>
+
+      <div class="controls">
+        <button class="return" id="resetBtn">Đặt lại</button>
+        <button class="return" id="randomizeStkBtn">Random stk</button>
+      </div>
+
+      <div class="hint">Nhấn "Quay" để tung ba xúc xắc. Tiền sẽ thay đổi theo kết quả (Tài / Xỉu).</div>
+    </div>
+
+    <!-- Return_money / top-up quiz view (based on return_money.jsx markup) -->
+    <div id="returnView" style="display:none;">
+      <div class="box1_rm">
+        <p class="de_bai">
+          Câu 1: Cho đường tròn (O; 5 cm). Kẻ hai tiếp tuyến AC và BC cắt nhau tại C (A, B là hai tiếp điểm). Gọi H là giao điểm giữa AB và OC. Biết BC = 10 cm, tính độ dài cạnh CH (làm tròn đến hàng phần mười).
+        </p>
+      </div>
+      <div class="box2_rm">
+        <input type="text" id="ans1" placeholder="Nhập đáp án của bạn" /> (cm)
+      </div>
+
+      <div class="box1_rm">
+        <p class="de_bai">
+          Câu 2: Anh Hiếu và chị Phương Anh có một vườn rau má hình vuông có diện tích 36km<sup>2</sup>. Hãy giúp hai anh chị tìm độ dài cạnh của vườn rau đó.
+        </p>
+      </div>
+      <div class="box2_rm">
+        <input type="text" id="ans2" placeholder="Nhập đáp án của bạn" /> (km)
+      </div>
+
+      <div class="box1_rm">
+        <p class="de_bai">
+          Câu 3: Anh Phước kinh doanh bao cao su trong 2 tháng. Trong tháng thứ nhất anh bán 10 nghìn 1 cái. Nhưng vì kinh tế khó khăn nên trong tháng sau anh phải nâng lên 20 nghìn 1 cái. Sau 2 tháng tổng số bao cao su mà anh Phước bán được là 15 nghìn cái và thu được 200 triệu. Hãy giúp anh Phước tính số bao cao su mà anh bán được trong từng tháng.
+        </p>
+      </div>
+      <div class="box3_rm">
+        <input type="text" id="ans3a" placeholder="Nhập đáp án của bạn" />
+        <input type="text" id="ans3b" placeholder="Nhập đáp án của bạn" />
+      </div>
+
+      <div style="display:flex; gap:8px; justify-content:center; margin-top:12px;">
+        <button class="submit" id="submitQuiz">Nộp đáp án</button>
+        <button class="return" id="backToGame">Quay lại</button>
+      </div>
+
+      <div id="quizMsg" style="text-align:center; margin-top:10px; color:#333;"></div>
+    </div>
+
+    <footer>Converted from App.jsx & return_money.jsx — single-file demo (kept original logic and class names)</footer>
+  </div>
+
+  <script>
+    // Keep variable names and flow similar to the original App.jsx / return_money.jsx
+    (function () {
+      // state (mirrors useState variables)
+      var chg_page = 0;
+      var b1 = 0, b2 = 0, b3 = 0;
+      var stk = Math.floor((Math.random() * 10 + 0)); // same init as original
+      var stcl;
+      var res;
+      var output_text;
+      var add = 0;
+
+      // DOM refs
+      var b1El = document.getElementById('b1');
+      var b2El = document.getElementById('b2');
+      var b3El = document.getElementById('b3');
+      var stkEl = document.getElementById('stkDisplay');
+      var outEl = document.getElementById('outputText');
+      var gameView = document.getElementById('gameView');
+      var returnView = document.getElementById('returnView');
+
+      var spinBtn = document.getElementById('spinBtn');
+      var addBtn = document.getElementById('addBtn');
+      var resetBtn = document.getElementById('resetBtn');
+      var randomizeStkBtn = document.getElementById('randomizeStkBtn');
+
+      var ans1El = document.getElementById('ans1');
+      var ans2El = document.getElementById('ans2');
+      var ans3aEl = document.getElementById('ans3a');
+      var ans3bEl = document.getElementById('ans3b');
+      var submitQuiz = document.getElementById('submitQuiz');
+      var backToGame = document.getElementById('backToGame');
+      var quizMsg = document.getElementById('quizMsg');
+
+      // compute output_text as in original App.jsx
+      function computeOutputText() {
+        res = Number(b1) + Number(b2) + Number(b3);
+        output_text = "Kết quả của bạn";
+        add = 0;
+        if (res > 0) {
+          if (res >= 13) {
+            output_text = "Tài";
+            add = Math.floor(Math.random() * 10 + 1) / 10;
+          } else if (res < 13) {
+            output_text = "Xỉu";
+            add = 0 - Math.floor(Math.random() * 10 + 1) / 10;
+          }
+        } else {
+          output_text = "Kết quả của bạn";
+        }
+      }
+
+      // render UI
+      function render() {
+        b1El.textContent = b1;
+        b2El.textContent = b2;
+        b3El.textContent = b3;
+        stkEl.textContent = stk + " triệu";
+
+        computeOutputText();
+        outEl.textContent = output_text;
+
+        // show return_money when chg_page > 0 and stk == 0 (same condition as original App.jsx)
+        if (chg_page > 0 && stk == 0) {
+          gameView.style.display = 'none';
+          returnView.style.display = 'block';
+        } else {
+          gameView.style.display = 'block';
+          returnView.style.display = 'none';
+        }
+      }
+
+      // click_event mimics the original function (kept name)
+      function click_event() {
+        // setb1/setb2/setb3 equivalents
+        b1 = Math.floor(Math.random() * 6 + 1);
+        b2 = Math.floor(Math.random() * 6 + 1);
+        b3 = Math.floor(Math.random() * 6 + 1);
+
+        // compute add based on res (we compute it freshly to apply money change)
+        var currentRes = Number(b1) + Number(b2) + Number(b3);
+        var addNow = 0;
+        if (currentRes > 0) {
+          if (currentRes >= 13) addNow = Math.floor(Math.random() * 10 + 1) / 10;
+          else addNow = 0 - Math.floor(Math.random() * 10 + 1) / 10;
+        }
+
+        stcl = Number((stk - 0.1 + addNow).toFixed(1));
+        if (stcl > 0) {
+          stk = stcl;
+        } else {
+          stk = 0;
+          output_text = "Kết quả của bạn";
+          b1 = 0; b2 = 0; b3 = 0;
+          alert("Vui lòng nạp thêm tiền để chơi tiếp!");
+        }
+
+        render();
+      }
+
+      // wiring
+      spinBtn.addEventListener('click', function () { click_event(); });
+      addBtn.addEventListener('click', function () {
+        chg_page = chg_page + 1; // same as set_chg(chg_page + 1)
+        render();
+      });
+
+      resetBtn.addEventListener('click', function () {
+        b1 = 0; b2 = 0; b3 = 0;
+        render();
+      });
+
+      randomizeStkBtn.addEventListener('click', function () {
+        stk = Math.floor(Math.random() * 10);
+        render();
+      });
+
+      // submit quiz — keep the original logical condition exactly as in return_money.jsx:
+      // if(value1 == "4,4" || value1 == "4.4" && value2 == 6 && value3a == 10000 && value3b == 5000)
+      submitQuiz.addEventListener('click', function () {
+        var value1 = ans1El.value;
+        var value2 = Number(ans2El.value);
+        var value3a = Number(ans3aEl.value);
+        var value3b = Number(ans3bEl.value);
+
+        // use the exact condition as written in the original file (note operator precedence)
+        if (value1 == "4,4" || value1 == "4.4" && value2 == 6 && value3a == 10000 && value3b == 5000) {
+          // original return_money returns <App /> when condition true.
+          // To approximate that behavior without changing everything, we'll reset chg_page so App shows again,
+          // and reinitialize stk similarly to the original App's initial state.
+          quizMsg.style.color = '#0a0';
+          quizMsg.textContent = 'Đúng! Quay lại trò chơi...';
+          chg_page = 0;
+          // reinitialize stk like App's initial useState
+          stk = Math.floor((Math.random() * 10 + 0));
+          // clear inputs
+          ans1El.value = ans2El.value = ans3aEl.value = ans3bEl.value = '';
+          setTimeout(function () {
+            quizMsg.textContent = '';
+            render();
+          }, 900);
+        } else {
+          quizMsg.style.color = '#b00';
+          quizMsg.textContent = 'Sai đáp án. Vui lòng thử lại.';
+        }
+      });
+
+      backToGame.addEventListener('click', function () {
+        // In the original return_money component there was no explicit "back" — App would return App only on correct answers.
+        // We'll let user go back to game (decrement chg_page similar to previous assistant behavior)
+        chg_page = Math.max(0, chg_page - 1);
+        quizMsg.textContent = '';
+        render();
+      });
+
+      // initial render to reflect initial state
+      render();
+
+      // expose for debugging
+      window._app_state = function () { return { chg_page: chg_page, b1: b1, b2: b2, b3: b3, stk: stk }; };
+
+    })();
+  </script>
+</body>
+</html>
