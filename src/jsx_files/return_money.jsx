@@ -45,12 +45,12 @@ function return_money() {
                 </div>
                 <div className="box1_rm">
                     <p className="de_bai">
-                        Câu 3: Anh Phước kinh doanh bao cao su trong 2 tháng. Trong tháng thứ nhất anh bán 10 nghìn 1 cái. Nhưng vì kinh tế khó khăn nên trong tháng sau anh phải nâng lên 20 nghìn 1 cái. Sau 2 tháng tổng số bao cao su mà anh Phước bán được là 15 nghìn cái và thu được 200 triệu. Hãy giúp anh Phước tính số bao cao su mà anh bán được trong từng tháng.
+                        Câu 3: Anh Phước kinh doanh bao cao su trong 2 tháng. Trong tháng thứ nhất anh bạnbán 10 nghìn 1 cái. Nhưng vì kinh tế khó khăn nên trong tháng sau anh phải nâng lên 20 nghìn 1 cái. Sau 2 tháng tổng số bao cao su mà anh Phước bán được là 15 nghìn cái và thu được 200 triệu. Hãy giúp anh Phước tính số bao cao su mà anh bán được trong từng tháng.
                     </p>
                 </div>
                 <div className="box2_rm">
                     <input type="text"
-                        placeholder="Nhập đáp án của bạn"
+                        placeholder="Nhập đáp án trong tháng thứ nhất của bạn"
                         value={value3a}
                         onChange={(e) => { get_value3a(e.target.value) }}
                     /> (cái)
@@ -58,7 +58,7 @@ function return_money() {
                 </div>
                 <div className="box3_rm">
                     <input type="text"
-                        placeholder="Nhập đáp án của bạn"
+                        placeholder="Nhập đáp án trong tháng thứ hai của bạn"
                         value={value3b}
                         onChange={(e) => { get_value3b(e.target.value) }}
                     /> (cái)
